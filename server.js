@@ -1,12 +1,11 @@
 const express = require('express');
-const path = require('path');
 
 const app = express();
 
 app.use(express.static(__dirname));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.use((req, res) => {
+  res.status(404).sendFile(require('path').join(__dirname, '404.html'));
 });
 
 const port = process.env.PORT || 3000;
